@@ -82,12 +82,13 @@ app.get('/client/:clientId', async (request, response) => {
 })
 
 app.post("/client", async (request, response) => {
-    const {firstName, lastName} = request.body;
+    const {firstName, lastName, userName} = request.body;
 
     const result = await prisma.clients.create({
         data: {
             FirstName: firstName,
-            LastName: lastName
+            LastName: lastName,
+            UserName: userName
         }
     })
 
@@ -96,13 +97,14 @@ app.post("/client", async (request, response) => {
 
 app.put("/client/:clientId", async (request, response) => {
     const {clientId} = request.params;
-    const {firstName, lastName} = request.body;
+    const {firstName, lastName, userName} = request.body;
 
     const result = await prisma.clients.update({
         where: {ClientID: +clientId},
         data: {
             FirstName: firstName,
-            LastName: lastName
+            LastName: lastName,
+            UserName: userName
         }
         
     })
@@ -139,14 +141,15 @@ app.get('/product/:sku', async (request, response) => {
 })
 
 app.post("/product", async (request, response) => {
-    const {sku, name, stock, price} = request.body;
+    const {sku, name, stock, price, userName} = request.body;
 
     const result = await prisma.products.create({
         data: {
             SKU: sku,
             Name: name,
             Stock: stock,
-            Price: price
+            Price: price,
+            UserName: userName
         }
     })
 
@@ -155,7 +158,7 @@ app.post("/product", async (request, response) => {
 
 app.put("/product/:sku", async (request, response) => {
     const {sku} = request.params;
-    const {newSku, name, stock, price} = request.body;
+    const {newSku, name, stock, price, userName} = request.body;
 
     const result = await prisma.products.update({
         where: {SKU: sku},
@@ -163,7 +166,8 @@ app.put("/product/:sku", async (request, response) => {
             SKU: newSku,
             Name: name,
             Stock: stock,
-            Price: price
+            Price: price,
+            UserName: userName
         }
         
     })

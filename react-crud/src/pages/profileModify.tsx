@@ -8,6 +8,7 @@ const ProfileModify = () => {
     const navigate = useNavigate();
 
     function saveProfile() {
+        if(username === "") return;
         fetch(`http://localhost:3001/profile/${username}`, 
         {method: "PUT",
         body: JSON.stringify({
@@ -36,12 +37,15 @@ const ProfileModify = () => {
         <Container className="d-flex justify-content-center align-item-center flex-column col-md-4 mx-auto center">
             <h1 className="d-flex justify-content-center mb-5">Modify Profile</h1>
             <Form>
-                <Form.Control 
-                    type="text"
-                    placeholder="Enter User Name"
-                    value={newUserName}
-                    onChange={e => setNewUserName(e.target.value)}
-                />
+                <Form.Group>
+                    <Form.Label>User Name</Form.Label>
+                    <Form.Control 
+                        type="text"
+                        placeholder="Enter User Name"
+                        value={newUserName}
+                        onChange={e => setNewUserName(e.target.value)}
+                    />
+                </Form.Group>
                 <Container className="d-flex justify-content-center mt-3">
                     <Button variant="secondary" onClick={saveProfile}>Save Profile</Button>
                 </Container>

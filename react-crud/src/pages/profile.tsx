@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import {Button, Container, Row, Col} from 'react-bootstrap';
-
-type ProfileType = {
-    UserName: string
-}
+import { ProfileType } from '../resources/types';
+import { getAllProfiles } from '../resources/functions';
 
 const Profile = () => {
     const [profiles, setProfiles] = useState<ProfileType[]>([]);
@@ -19,12 +17,7 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        fetch("http://localhost:3001/profile", {method: "GET"})
-            .then(response => response.json())
-            .then(data => setProfiles(data))
-            .catch((err) => {
-                console.log(err.message);
-            })
+        getAllProfiles(setProfiles);
     }, []);
 
     return (

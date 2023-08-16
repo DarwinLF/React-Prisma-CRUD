@@ -1,17 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from "./components/layout";
-import Home from "./components/home";
-import Profile from "./components/profile";
-import ProfileCreate from './components/profileCreate';
-import ProfileModify from './components/profileModify';
-import Client from './components/client';
-import ClientCreate from './components/clientCreate';
-import ClientModify from './components/clientModify';
-import Product from './components/product';
-import ProductCreate from './components/productCreate';
-import ProductModify from './components/productModify';
+import Layout from "./pages/layout";
+import Home from "./pages/home";
+import Profile from "./pages/profile";
+import ProfileCreate from './pages/profileCreate';
+import ProfileModify from './pages/profileModify';
+import Client from './pages/client';
+import ClientCreate from './pages/clientCreate';
+import ClientModify from './pages/clientModify';
+import Product from './pages/product';
+import ProductCreate from './pages/productCreate';
+import ProductModify from './pages/productModify';
 
 function App() {
   return (

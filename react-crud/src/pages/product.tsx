@@ -1,12 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Button, Container, Row, Col} from 'react-bootstrap';
-
-type ProductType = {
-    SKU: string,
-    Name: string,
-    Stock: number,
-    Price: number
-}
+import { ProductType } from '../resources/types';
 
 const Product = () => {
     const [products, setProducts] = useState<ProductType[]>([]);
@@ -31,15 +25,16 @@ const Product = () => {
     }, []);
 
     return (
-        <Container className='d-flex justify-content-center flex-column col-md-8 mt-4'>
-            <Button className='mt-3 mb-5 col-md-4' href='/product/create'>Create New Product</Button>
+        <Container className='d-flex justify-content-center flex-column col-md-11 mt-4'>
+            <Button className='mt-3 mb-5 col-md-3' href='/product/create'>Create New Product</Button>
                 <Row>
                     <Col><h4>SKU</h4></Col>
                     <Col><h4>Name</h4></Col>
                     <Col><h4>Stock</h4></Col>
                     <Col><h4>Price</h4></Col>
                     <Col><h4>Total</h4></Col>
-                    <Col xs={4}></Col>
+                    <Col><h4>Created By</h4></Col>
+                    <Col xs={3}></Col>
                 </Row>
                 <hr />
                 {products.map((product) => {
@@ -50,7 +45,8 @@ const Product = () => {
                             <Col>{product.Stock}</Col>
                             <Col>{product.Price}</Col>
                             <Col>{product.Stock * product.Price}</Col>
-                            <Col xs={4}>
+                            <Col>{product.UserName}</Col>
+                            <Col xs={3}>
                                 <Button variant='secondary' href={`/product/modify/${product.SKU}`}>Modify</Button>
                                 &nbsp;
                                 <Button variant='danger' onClick={e => deleteProduct(product.SKU)}>Delete</Button>

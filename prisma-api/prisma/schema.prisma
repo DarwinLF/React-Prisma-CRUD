@@ -20,8 +20,8 @@ model Clients {
   ClientID Int @id @default(autoincrement())
   FirstName String @db.VarChar(60)
   LastName String @db.VarChar(60)
-  Profile Profiles @relation(fields: [UserName], references: [UserName])
-  UserName String @default("")
+  Profile Profiles @relation(fields: [UserName], references: [UserName], onDelete: Cascade)
+  UserName String @default("") @db.VarChar(60)
 }
 
 model Products {
@@ -29,6 +29,6 @@ model Products {
   Name String @db.VarChar(60)
   Stock Int
   Price Float @db.Float
-  Profile Profiles @relation(fields: [UserName], references: [UserName])
-  UserName String @default("")
+  Profile Profiles @relation(fields: [UserName], references: [UserName], onDelete: Cascade)
+  UserName String @default("") @db.VarChar(60)
 }

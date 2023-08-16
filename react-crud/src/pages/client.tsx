@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Button, Container, Row, Col} from 'react-bootstrap';
-
-type ClientType = {
-    ClientID: number
-    FirstName: string,
-    LastName: string
-}
+import { ClientType } from '../resources/types';
 
 const Client = () => {
     const [clients, setClients] = useState<ClientType[]>([]);
@@ -30,12 +25,13 @@ const Client = () => {
     }, []);
 
     return (
-        <Container className='d-flex justify-content-center flex-column col-md-6 mt-4'>
-            <Button className='mt-3 mb-5 col-md-4' href='/client/create'>Create New Client</Button>
+        <Container className='d-flex justify-content-center flex-column col-md-8 mt-4'>
+            <Button className='mt-3 mb-5 col-md-3' href='/client/create'>Create New Client</Button>
                 <Row>
                     <Col><h4>ClientID</h4></Col>
                     <Col><h4>First Name</h4></Col>
                     <Col><h4>Last Name</h4></Col>
+                    <Col><h4>Created By</h4></Col>
                     <Col xs={4}></Col>
                 </Row>
                 <hr/>
@@ -45,6 +41,7 @@ const Client = () => {
                             <Col>{client.ClientID}</Col>
                             <Col>{client.FirstName}</Col>
                             <Col>{client.LastName}</Col>
+                            <Col>{client.UserName}</Col>
                             <Col xs={4}>
                                 <Button variant='secondary' href={`/client/modify/${client.ClientID}`}>Modify</Button>
                                 &nbsp;
