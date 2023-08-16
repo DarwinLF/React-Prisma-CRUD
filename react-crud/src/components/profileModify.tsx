@@ -1,0 +1,53 @@
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import {Button, Form, Container} from "react-bootstrap";
+
+const ProfileModify = () => {
+    const {username} = useParams();
+    const [newUserName, setNewUserName] = useState("");
+    const navigate = useNavigate();
+
+    function saveProfile() {
+        fetch(`http://localhost:3001/profile/${username}`, 
+        {method: "PUT",
+        body: JSON.stringify({
+            newUserName
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }})
+            .then(response => response.json())
+            .then(data => navigate("/profile"))
+            .catch((err) => {
+                console.log(err.message);
+            })
+    }
+
+    useEffect(() => {
+        fetch(`http://localhost:3001/profile/${username}`, {method: "GET"})
+            .then(response => response.json())
+            .then(data => setNewUserName(data.UserName))
+            .catch((err) => {
+                console.log(err.message);
+            })
+    }, [username]);
+
+    return (
+        <Container className="d-flex justify-content-center align-item-center flex-column col-md-4 mx-auto center">
+            <h1 className="d-flex justify-content-center mb-5">Modify Profile</h1>
+            <Form>
+                <Form.Control 
+                    type="text"
+                    placeholder="Enter User Name"
+                    value={newUserName}
+                    onChange={e => setNewUserName(e.target.value)}
+                />
+                <Container className="d-flex justify-content-center mt-3">
+                    <Button variant="secondary" onClick={saveProfile}>Save Profile</Button>
+                </Container>
+            </Form>
+        </Container>
+    );
+}
+
+export default ProfileModify;
