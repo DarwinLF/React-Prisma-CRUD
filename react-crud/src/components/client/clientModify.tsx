@@ -14,7 +14,10 @@ function ClientModify() {
     const navigate = useNavigate();
 
     function saveClient() {
-        if(firstName === "" || lastName === "") return;
+        if(firstName === "" || lastName === "") {
+            toast.error("there are empty fields")
+            return;
+        }
 
         fetch(`http://localhost:3001/client/${clientId}`, 
         {method: "PUT",

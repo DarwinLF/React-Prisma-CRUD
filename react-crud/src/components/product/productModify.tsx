@@ -16,8 +16,10 @@ function ProductModify() {
     const navigate = useNavigate();
 
     function saveProduct() {
-        if(sku === "" || name === "" || stock === 0 
-            || price === 0) return;
+        if(sku === "" || name === "" || stock === 0 || price === 0){
+            toast.error("there are empty fields")
+            return;
+        }
 
         fetch(`http://localhost:3001/product/${sku}`, 
         {method: "PUT",

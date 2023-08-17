@@ -9,7 +9,10 @@ function ProfileModify() {
     const navigate = useNavigate();
 
     function saveProfile() {
-        if(username === "") return;
+        if(username === "") {
+            toast.error("there are empty fields")
+            return;
+        }
         fetch(`http://localhost:3001/profile/${username}`, 
         {method: "PUT",
         body: JSON.stringify({

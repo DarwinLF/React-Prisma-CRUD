@@ -13,7 +13,10 @@ function ClientCreate() {
     const navigate = useNavigate();
 
     function createClient() {
-        if(userName === "" || firstName === "" || lastName === "") return;
+        if(userName === "" || firstName === "" || lastName === "") {
+            toast.error("there are empty fields")
+            return;
+        }
 
         fetch("http://localhost:3001/client", 
         {method: "POST",

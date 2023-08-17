@@ -8,7 +8,10 @@ function ProfileCreate() {
     const navigate = useNavigate();
 
     function createProfile() {
-        if(userName === "") return;
+        if(userName === "") {
+            toast.error("there are empty fields")
+            return;
+        }
 
         fetch("http://localhost:3001/profile", 
         {method: "POST",

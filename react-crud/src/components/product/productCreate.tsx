@@ -15,8 +15,10 @@ function ProductCreate() {
     const navigate = useNavigate();
 
     function createProduct() {
-        if(sku === "" || name === "" || stock === 0 
-            || price === 0 || userName === "") return;
+        if(sku === "" || name === "" || stock === 0 || price === 0 || userName === "") {
+            toast.error("there are empty fields")
+            return;
+        }
 
         fetch("http://localhost:3001/product", 
         {method: "POST",
