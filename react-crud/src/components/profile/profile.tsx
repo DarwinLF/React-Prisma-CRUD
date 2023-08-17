@@ -1,24 +1,14 @@
 import { useState, useEffect } from 'react';
 import {Button, Container, Row, Col} from 'react-bootstrap';
-import { ProfileType } from '../resources/types';
-import { getAllProfiles } from '../resources/functions';
+import { ProfileType } from '../../resources/types';
+import { getAllRows, deleteRow } from '../../resources/functions';
 
-const Profile = () => {
+function Profile() {
     const [profiles, setProfiles] = useState<ProfileType[]>([]);
 
-    function deleteProfile(userName: string) {
-        fetch(`http://localhost:3001/profile/${userName}`, {method: "DELETE"})
-            .then(response => response.json())
-            .then(data => window.location.reload())
-            .catch((err) => {
-                console.log(err.message);
-            })
-        return;
-    }
-
     useEffect(() => {
-        getAllProfiles(setProfiles);
-    }, []);
+        getAllRows("profile", setProfiles);
+    }, [profiles]);
 
     return (
         <Container className='d-flex justify-content-center flex-column col-md-5 mt-4'>
@@ -35,7 +25,7 @@ const Profile = () => {
                             <Col xs={4}>
                                 <Button variant='secondary' href={`/profile/modify/${profile.UserName}`}>Modify</Button>
                                 &nbsp;
-                                <Button variant='danger' onClick={e => deleteProfile(profile.UserName)}>Delete</Button>
+                                <Button variant='danger' onClick={e => deleteRow("profile", profile.UserName)}>Delete</Button>
                             </Col>
                         </Row>
                     );

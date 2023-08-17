@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {Button, Form, Container} from "react-bootstrap";
-import { ProfileType } from "../resources/types";
-import { getAllProfiles, selectProfile } from "../resources/functions";
+import { ProfileType } from "../../resources/types";
+import { getAllRows, selectProfile } from "../../resources/functions";
+import toast from "react-hot-toast";
 
-const ClientModify = () => {
-    const {clientId} = useParams();
+function ClientCreate() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
     const [profiles, setProfiles] = useState<ProfileType[]>([]);
     const navigate = useNavigate();
 
-    function saveClient() {
-        if(firstName === "" || lastName === "") return;
+    function createClient() {
+        if(userName === "" || firstName === "" || lastName === "") return;
 
-        fetch(`http://localhost:3001/client/${clientId}`, 
-        {method: "PUT",
+        fetch("http://localhost:3001/client", 
+        {method: "POST",
         body: JSON.stringify({
             firstName,
             lastName,
@@ -25,37 +25,33 @@ const ClientModify = () => {
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }})
-            .then(response => response.json())
-            .then(data => navigate("/client"))
+            .then(response => {
+                if(response.status === 500) {
+                    toast.error("client alredy exist");
+                }
+                else {
+                    toast.success("client created")
+                    navigate("/client")
+                }
+            })
             .catch((err) => {
                 console.log(err.message);
             })
     }
 
     useEffect(() => {
-        getAllProfiles(setProfiles);
-        fetch(`http://localhost:3001/client/${clientId}`, {method: "GET"})
-            .then(response => response.json())
-            .then(data => {
-                setFirstName(data.FirstName);
-                setLastName(data.LastName);
-                setUserName(data.UserName);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            })
-    }, [clientId]);
+        getAllRows("profile", setProfiles);
+    }, []);
 
     return (
         <Container className="d-flex justify-content-center align-item-center flex-column col-md-4 mx-auto center">
-            <h1 className="d-flex justify-content-center mb-5">Modify Client</h1>
+            <h1 className="d-flex justify-content-center mb-5">Create new Profile</h1>
             <Form>
                 <Form.Group>
                     <Form.Label>First Name</Form.Label>
                     <Form.Control 
                         type="text"
                         placeholder="Enter First Name"
-                        value={firstName}
                         onChange={e => setFirstName(e.target.value)}
                     />
                 </Form.Group>
@@ -65,7 +61,6 @@ const ClientModify = () => {
                     <Form.Control 
                         type="text"
                         placeholder="Enter Last Name"
-                        value={lastName}
                         onChange={e => setLastName(e.target.value)}
                     />
                 </Form.Group>
@@ -73,17 +68,18 @@ const ClientModify = () => {
                 <Form.Group>
                     <Form.Label>Created by</Form.Label>
                     <Form.Select onChange={e => selectProfile(e.target.value, setUserName)}>
+                        <option selected disabled>Choose a User</option>
                         {profiles.map((profile) => {
-                            return <option selected={profile.UserName === userName? true : false}>{profile.UserName}</option>
+                            return <option>{profile.UserName}</option>
                         })}
                     </Form.Select>
                 </Form.Group>
                 <Container className="d-flex justify-content-center mt-3">
-                    <Button variant="secondary" onClick={saveClient}>Save Client</Button>
+                    <Button variant="secondary" onClick={createClient}>Create Client</Button>
                 </Container>
             </Form>
         </Container>
     );
 }
 
-export default ClientModify;
+export default ClientCreate;

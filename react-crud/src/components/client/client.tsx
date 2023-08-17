@@ -1,28 +1,14 @@
 import { useState, useEffect } from 'react';
 import {Button, Container, Row, Col} from 'react-bootstrap';
-import { ClientType } from '../resources/types';
+import { ClientType } from '../../resources/types';
+import { getAllRows, deleteRow } from '../../resources/functions';
 
-const Client = () => {
+function Client() {
     const [clients, setClients] = useState<ClientType[]>([]);
 
-    function deleteClient(clientId: number) {
-        fetch(`http://localhost:3001/client/${clientId}`, {method: "DELETE"})
-            .then(response => response.json())
-            .then(data => window.location.reload())
-            .catch((err) => {
-                console.log(err.message);
-            })
-        return;
-    }
-
     useEffect(() => {
-        fetch("http://localhost:3001/client", {method: "GET"})
-            .then(response => response.json())
-            .then(data => setClients(data))
-            .catch((err) => {
-                console.log(err.message);
-            })
-    }, []);
+        getAllRows("client", setClients);
+    }, [clients]);
 
     return (
         <Container className='d-flex justify-content-center flex-column col-md-8 mt-4'>
@@ -45,7 +31,7 @@ const Client = () => {
                             <Col xs={4}>
                                 <Button variant='secondary' href={`/client/modify/${client.ClientID}`}>Modify</Button>
                                 &nbsp;
-                                <Button variant='danger' onClick={e => deleteClient(client.ClientID)}>Delete</Button>
+                                <Button variant='danger' onClick={e => deleteRow("client", client.ClientID)}>Delete</Button>
                             </Col>
                         </Row>
                     );

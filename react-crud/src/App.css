@@ -56,16 +56,3 @@ body {
 .navbar-link {
   text-decoration: none;
 }
-
-/*Dropdown menu*/
-
-.dropbtn {
-  color: white;
-  padding: 6px;
-  font-size: 16px;
-  border: none;
-}
-
-.dropdown-menu {
-  overflow-y: scroll;
-}

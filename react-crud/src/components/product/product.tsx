@@ -1,28 +1,14 @@
 import { useState, useEffect } from 'react';
 import {Button, Container, Row, Col} from 'react-bootstrap';
-import { ProductType } from '../resources/types';
+import { ProductType } from '../../resources/types';
+import { getAllRows, deleteRow } from '../../resources/functions';
 
-const Product = () => {
+function Product() {
     const [products, setProducts] = useState<ProductType[]>([]);
 
-    function deleteProduct(sku: string) {
-        fetch(`http://localhost:3001/product/${sku}`, {method: "DELETE"})
-            .then(response => response.json())
-            .then(data => window.location.reload())
-            .catch((err) => {
-                console.log(err.message);
-            })
-        return;
-    }
-
     useEffect(() => {
-        fetch("http://localhost:3001/product", {method: "GET"})
-            .then(response => response.json())
-            .then(data => setProducts(data))
-            .catch((err) => {
-                console.log(err.message);
-            })
-    }, []);
+        getAllRows("product", setProducts);
+    }, [products]);
 
     return (
         <Container className='d-flex justify-content-center flex-column col-md-11 mt-4'>
@@ -49,7 +35,7 @@ const Product = () => {
                             <Col xs={3}>
                                 <Button variant='secondary' href={`/product/modify/${product.SKU}`}>Modify</Button>
                                 &nbsp;
-                                <Button variant='danger' onClick={e => deleteProduct(product.SKU)}>Delete</Button>
+                                <Button variant='danger' onClick={e => deleteRow("product", product.SKU)}>Delete</Button>
                             </Col>
                         </Row>
                     );

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {Button, Form, Container} from "react-bootstrap";
-import "../App.css";
+import toast from "react-hot-toast";
 
-const ProfileCreate = () => {
+function ProfileCreate() {
     const [userName, setUserName] = useState("");
     const navigate = useNavigate();
 
@@ -18,8 +18,15 @@ const ProfileCreate = () => {
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }})
-            .then(response => response.json())
-            .then(data => navigate("/profile"))
+            .then(response => {
+                if(response.status === 500) {
+                    toast.error("username alredy exist");
+                }
+                else {
+                    toast.success("profile created")
+                    navigate("/profile")
+                }
+            })
             .catch((err) => {
                 console.log(err.message);
             })

@@ -1,9 +1,11 @@
 import { Outlet, NavLink } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
+import { Toaster } from "react-hot-toast";
 
-const Layout = () => {
+function Layout() {
     return (
         <div>
+          <Toaster position="bottom-right" reverseOrder={true}/>
           <Navbar>
             <Navbar.Brand className="navbar-item">React CRUD</Navbar.Brand>
             <Nav>
