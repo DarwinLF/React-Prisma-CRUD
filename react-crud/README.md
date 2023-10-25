@@ -1,10 +1,30 @@
-# Getting Started with Create React App
+# Home
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![home](https://github.com/DarwinLF/React-Prisma-CRUD/assets/118573390/ed2133a2-bfe0-4e7f-be7b-4454ba3b4497)
 
-## Available Scripts
+# Profile
 
-In the project directory, you can run:
+![profile](https://github.com/DarwinLF/React-Prisma-CRUD/assets/118573390/7918aa9d-c9fe-4970-8cbe-f32b1bad63a8)
+
+# Create Profile
+
+![create profile](https://github.com/DarwinLF/React-Prisma-CRUD/assets/118573390/e0242973-e0bd-4043-bab2-4a45235215cd)
+
+# Client
+
+![client](https://github.com/DarwinLF/React-Prisma-CRUD/assets/118573390/75cc43d1-be3a-4ee4-a581-8c6e4697f8f5)
+
+# Create Client
+
+![create client](https://github.com/DarwinLF/React-Prisma-CRUD/assets/118573390/c5926dcb-3a7b-46e1-80b9-4ae3adb858f1)
+
+# Product
+
+![product](https://github.com/DarwinLF/React-Prisma-CRUD/assets/118573390/90962e17-0ffb-47bd-b770-df9174fdf09d)
+
+# Create Product
+
+![create product](https://github.com/DarwinLF/React-Prisma-CRUD/assets/118573390/910a13d3-9b5d-4934-a4fc-cb2355b4ae5c)
 
 ### `npm start`
 
@@ -13,34 +33,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
