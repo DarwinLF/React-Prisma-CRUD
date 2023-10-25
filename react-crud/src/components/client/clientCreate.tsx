@@ -48,7 +48,7 @@ function ClientCreate() {
 
     return (
         <Container className="d-flex justify-content-center align-item-center flex-column col-md-4 mx-auto center">
-            <h1 className="d-flex justify-content-center mb-5">Create new Profile</h1>
+            <h1 className="d-flex justify-content-center mb-5">Create new Client</h1>
             <Form>
                 <Form.Group>
                     <Form.Label>First Name</Form.Label>
